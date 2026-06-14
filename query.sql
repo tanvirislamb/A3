@@ -18,12 +18,14 @@ CREATE TABLE IF NOT EXISTS Matches (
 
 -- create booking table
 CREATE TABLE Bookings (
-    booking_id TYPE,
-    user_id TYPE,
-    match_id TYPE,
-    seat_number TYPE,
-    payment_status TYPE,
-    total_cost TYPE,
+    booking_id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL,
+    FOREIGN KEY(user_id) REFERENCES Users(user_id),
+    match_id INT NOT NULL,
+    FOREIGN KEY(match_id) REFERENCES Matches(match_id),
+    seat_number VARCHAR(25),
+    payment_status VARCHAR(25) CHECK (payment_status IN('Pending', 'Confirmed', 'Cancelled', 'Refunded')),
+    total_cost DECIMAL(10,2) NOT NULL,
     
 );
 
