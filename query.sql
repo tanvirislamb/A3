@@ -4,18 +4,16 @@ CREATE TABLE IF NOT EXISTS Users (
     full_name VARCHAR(50) NOT NULL,
     email VARCHAR(50) NOT NULL UNIQUE,
     role VARCHAR(25) NOT NULL DEFAULT 'Football Fan' CHECK (role IN('Ticket Manager','Football Fan')),
-    phone_number VARCHAR(15),
-    
+    phone_number VARCHAR(15)
 );
 
 -- create match table
-CREATE TABLE Matches (
-    match_id TYPE,
-    fixture TYPE,
-    tournament_category TYPE,
-    base_ticket_price TYPE,
-    match_status TYPE,
-    
+CREATE TABLE IF NOT EXISTS Matches (
+    match_id SERIAL PRIMARY KEY,
+    fixture VARCHAR(100) NOT NULL,
+    tournament_category VARCHAR(50) NOT NULL,
+    base_ticket_price DECIMAL(10,2) NOT NULL,
+    match_status VARCHAR(25) DEFAULT 'Available' CHECK (match_status IN('Available', 'Selling Fast', 'Sold Out', 'Postponed'))
 );
 
 -- create booking table
