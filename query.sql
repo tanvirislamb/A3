@@ -65,3 +65,20 @@ WHERE tournament_category='Champions League' AND match_status='Available'
 SELECT user_id,full_name,email
 FROM Users
 WHERE full_name ILIKE 'tanvir%' OR full_name ILIKE '%Haque%'
+
+-- query 3
+SELECT booking_id, user_id, match_id, COALESCE (payment_status, 'Action Required') AS systematic_status
+FROM Bookings WHERE payment_status IS NULL
+
+-- query 4
+SELECT booking_id, full_name, fixture, total_cost 
+FROM Bookings AS b 
+INNER JOIN Users AS u 
+ON u.user_id = b.user_id 
+INNER JOIN Matches AS m 
+ON m.match_id = b.match_id
+
+-- query 5
+SELECT u.user_id, u.full_name, b.booking_id
+FROM Users AS u LEFT JOIN Bookings AS b
+ON u.user_id = b.user_id
