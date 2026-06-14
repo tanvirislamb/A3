@@ -35,7 +35,8 @@ INSERT INTO Users (user_id, full_name, email, role, phone_number) VALUES
 (1, 'Tanvir Rahman', 'tanvir@mail.com', 'Football Fan', '+8801711111111'),
 (2, 'Asif Haque', 'asif@mail.com', 'Football Fan', '+8801722222222'),
 (3, 'Sajjad Rahman', 'sajjad@mail.com', 'Ticket Manager', '+8801733333333'),
-(4, 'Jannat Ara', 'jannat@mail.com', 'Football Fan', NULL);
+(4, 'Jannat Ara', 'jannat@mail.com', 'Football Fan', NULL),
+(5,'Tanvir Islam','tanvir@gmail.com','Football Fan','+8801712321463')
 
 
 INSERT INTO Matches (match_id, fixture, tournament_category, base_ticket_price, match_status) VALUES
@@ -51,4 +52,11 @@ INSERT INTO Bookings (booking_id, user_id, match_id, seat_number, payment_status
 (502, 1, 102, 'B-04', 'Confirmed', 120.00),
 (503, 2, 101, 'A-13', 'Confirmed', 150.00),
 (504, 2, 101, NULL, NULL, 150.00),
-(505, 3, 102, 'C-20', 'Pending', 120.00);
+(505, 3, 102, 'C-20', 'Pending', 120.00),
+(506,5,105,'A-10','Pending',130.00);
+
+
+-- quey 1
+SELECT match_id, fixture, base_ticket_price 
+FROM Matches 
+WHERE tournament_category='Champions League' AND match_status='Available'
